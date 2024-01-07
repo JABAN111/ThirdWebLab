@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <h:outputStylesheet name="style.css" library="style" />
+    <title>Основная страница</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <meta name="description" content="Web-programming third lab"/>
+    <meta name="author" content="Niagin Mikhail Alexeyevich"/>
+</h:head>
+<h:body>
+    <div id = "page">
+        <div id="head">
+            <ui:insert name ="header">
+                <ui:include src="/template/headers/templateHeader.xhtml"></ui:include>
+            </ui:insert>
+        </div>
+        <div id = "main-button">
+            <h:commandLink action="../startPage.xhtml" value="To the start page" />
+        </div>
+        <div>
+            <ui:insert name = "main_body">
+                <h:form>
+                    <ui:include src="/template/buttonsTemplates/templateMainPartXbuttons.xhtml"> </ui:include>
+                    <ui:include src="/template/buttonsTemplates/templateMainPartYButtons.xhtml"> </ui:include>
+                    <ui:include src="/template/buttonsTemplates/templateMainPartRbuttons.xhtml"> </ui:include>
+                    <h:commandButton value = "Submit" action = "result" >
+
+                    </h:commandButton>
+                </h:form>
+                <ui:include src="/template/templateResults.xhtml"> </ui:include>
+                <canvas id="myCanvas" width="350" height="350"> </canvas>
+
+                <!--                <script src="../scripts/image.js"> </script>-->
+            </ui:insert>
+        </div>
+    </div>
+    <!--    <script src="js/script.js"> </script>-->
+</h:body>
+</html>

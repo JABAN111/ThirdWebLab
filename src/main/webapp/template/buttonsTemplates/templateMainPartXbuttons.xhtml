@@ -9,19 +9,20 @@
 
 <h:body>
     <div>
-            <h3>Выберите x:</h3>
-            <h:selectOneRadio value = "#{xButton.data}">
-                <f:selectItem itemValue = "-4" itemLabel = "-4" />
-                <f:selectItem itemValue = "-3" itemLabel = "-3" />
-                <f:selectItem itemValue = "-2" itemLabel = "-2"/>
-                <f:selectItem itemValue = "-1" itemLabel = "-1" />
-                <f:selectItem itemValue = "0" itemLabel = "0" />
-                <f:selectItem itemValue = "1" itemLabel = "1" />
-                <f:selectItem itemValue = "2" itemLabel = "2" />
-                <f:selectItem itemValue = "3" itemLabel = "3" />
-                <f:selectItem itemValue = "4" itemLabel = "4" />
-            </h:selectOneRadio>
-        <h:commandButton value = "Submit" action = "result" />
+        <h3>Выберите x:</h3>
+        <h:selectOneRadio id = "xButton" value = "#{xButton.data}" validator="#{validatorButtonX.validate}">
+            <f:selectItem itemValue = "-4" itemLabel = "-4" />
+            <f:selectItem itemValue = "-3" itemLabel = "-3" />
+            <f:selectItem itemValue = "-2" itemLabel = "-2"/>
+            <f:selectItem itemValue = "-1" itemLabel = "-1" />
+            <f:selectItem itemValue = "0" itemLabel = "0" />
+            <f:selectItem itemValue = "1" itemLabel = "1" />
+            <f:selectItem itemValue = "2" itemLabel = "2" />
+            <f:selectItem itemValue = "3" itemLabel = "3" />
+            <f:selectItem itemValue = "4" itemLabel = "4" />
+        </h:selectOneRadio>
+        <h:message for="xButton" style="color: red;" />
+
 
     </div>
 </h:body>

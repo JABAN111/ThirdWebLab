@@ -1,5 +1,6 @@
 package buttonsBeans;
 
+
 import lombok.Data;
 
 import java.io.Serializable;
@@ -11,5 +12,9 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 @Data
 public class xButtonBean implements Serializable {
-    public Integer data;
+    public int data;
+
+//    resultKeeper resultKeeper = new resultKeeper();
+//    resultKeeper.addResult();
+
 }

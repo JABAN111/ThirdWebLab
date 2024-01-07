@@ -10,5 +10,5 @@ import java.io.Serializable;
 @RequestScoped
 @ManagedBean(name = "yButton", eager = true)
 public class yButtonBean implements Serializable {
-    private String data = "";
+    private Double data;
 }
