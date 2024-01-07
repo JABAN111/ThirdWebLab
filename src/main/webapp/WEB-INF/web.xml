@@ -7,16 +7,13 @@
     <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
-  <welcome-file-list>
-    <welcome-file>
-      views/startPage.xhtml
-    </welcome-file>
-  </welcome-file-list>
   <servlet-mapping>
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
-<!--  Забавы ради, хочу увидеть пример отладочной инфы-->
+  <welcome-file-list>
+    <welcome-file>views/startPage.xhtml</welcome-file>
+  </welcome-file-list>
   <context-param>
     <param-name>javax.faces.PROJECT_STAGE</param-name>
     <param-value>Development</param-value>
