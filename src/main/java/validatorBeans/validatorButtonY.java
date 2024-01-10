@@ -9,7 +9,7 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
-@FacesValidator("validatorButtonX")
+@FacesValidator("validatorButtonY")
 @ManagedBean
 @RequestScoped
 public class validatorButtonY implements Validator {
@@ -23,7 +23,7 @@ public class validatorButtonY implements Validator {
                         "Введенное значение: " + value);
                 throw new ValidatorException(message);
             }
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | Error e) {
             FacesMessage message = new FacesMessage("Введите ЧИСЛО в диапазоне [-3;5]");
             throw new ValidatorException(message);
         }

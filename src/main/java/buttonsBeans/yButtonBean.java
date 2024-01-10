@@ -11,4 +11,5 @@ import java.io.Serializable;
 @ManagedBean(name = "yButton", eager = true)
 public class yButtonBean implements Serializable {
     private Double data;
+
 }

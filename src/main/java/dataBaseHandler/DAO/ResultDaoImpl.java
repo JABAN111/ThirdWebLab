@@ -2,13 +2,18 @@ package dataBaseHandler.DAO;
 
 import dataBaseHandler.ResultEntity;
 import dataBaseHandler.utils.HibernateSessionFactoryUtil;
+import lombok.NoArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import java.util.ArrayList;
 import java.util.List;
-
+@ManagedBean
+@RequestScoped
+@NoArgsConstructor
 public class ResultDaoImpl implements resultDao {
 
     @Override

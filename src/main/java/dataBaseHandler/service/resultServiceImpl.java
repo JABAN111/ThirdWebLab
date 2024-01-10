@@ -3,8 +3,15 @@ package dataBaseHandler.service;
 import dataBaseHandler.DAO.ResultDaoImpl;
 import dataBaseHandler.ResultEntity;
 
+import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import java.io.Serializable;
 
-public class resultServiceImpl implements resultService{
+@ManagedBean()
+@ApplicationScoped
+public class resultServiceImpl implements resultService, Serializable {
+
     ResultDaoImpl resultDao = new ResultDaoImpl();
 
     @Override

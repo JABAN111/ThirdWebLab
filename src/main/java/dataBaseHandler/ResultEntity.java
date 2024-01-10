@@ -1,6 +1,7 @@
 package dataBaseHandler;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,4 +20,12 @@ public class ResultEntity {
     private Float R;
     private Date date;
     private boolean status;
+
+    public ResultEntity(Integer x, Double y, Float r, Date date, boolean status) {
+        this.x = x;
+        this.y = y;
+        this.R = r;
+        this.date = date;
+        this.status = status;
+    }
 }
