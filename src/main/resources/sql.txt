@@ -1,0 +1,9 @@
+CREATE TABLE Results
+(
+    id SERIAL PRIMARY KEY,
+    x INTEGER NOT NULL CHECK ((-4 <= x) AND (x <= 4)),
+    y FLOAT NOT NULL CHECK ((-3 <= y) AND (y <= 5)),
+    R FLOAT NOT NULL,
+    date DATE,
+    status BOOLEAN
+);
