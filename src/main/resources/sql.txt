@@ -1,4 +1,4 @@
-CREATE TABLE Results
+CREATE TABLE results
 (
     id SERIAL PRIMARY KEY,
     x INTEGER NOT NULL CHECK ((-4 <= x) AND (x <= 4)),
