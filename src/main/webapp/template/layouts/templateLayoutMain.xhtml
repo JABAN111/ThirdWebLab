@@ -28,15 +28,16 @@
                     <ui:include src="/template/buttonsTemplates/templateMainPartYButtons.xhtml"> </ui:include>
                     <ui:include src="/template/buttonsTemplates/templateMainPartRbuttons.xhtml"> </ui:include>
 
-                    <h:commandButton value="Submit" action="#{Controller.addResult(xButton.data, yButton.data, 3)}" />
+                    <h:commandButton value="Sent">
+                        <f:ajax execute="@form"
+                                listener="#{Controller.addResult(xButton.data,yButton.data,3)}"
+                        />
+                    </h:commandButton>
+                    <h:commandButton value="Delete everything"
+                                     action="#{resultServiceImpl.cleanResults()}"
+                    >
 
-                    <!--
-<h:commandButton value = "Submit" action = "result" >-->
-<!--                        <f:ajax execute="@form"-->
-<!--                                listener="#{Controller.addResult(xButton.data,yButton.data,3)}"-->
-<!--                        />-->
-
-<!--                    </h:commandButton>-->
+                    </h:commandButton>
                 </h:form>
                 <ui:include src="/template/templateResults.xhtml"> </ui:include>
                 <canvas id="myCanvas" width="350" height="350"> </canvas>
