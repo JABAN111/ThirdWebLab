@@ -35,17 +35,19 @@
                     </h:commandButton>
                     <h:commandButton value="Delete everything"
                                      action="#{resultServiceImpl.cleanResults()}"
-                    >
+                    />
 
-                    </h:commandButton>
                 </h:form>
-                <ui:include src="/template/templateResults.xhtml"> </ui:include>
                 <canvas id="myCanvas" width="350" height="350"> </canvas>
+                <ui:include src="/template/templateResults.xhtml"> </ui:include>
 
-                <!--                <script src="../scripts/image.js"> </script>-->
+
             </ui:insert>
         </div>
     </div>
-    <!--    <script src="js/script.js"> </script>-->
+<!--    <script type="module" src="/webapp/resources/scripts/image.js"> </script>-->
+    <h:outputScript name="scripts/image.js" />
+
+    <!--        <script src="js/script.js"> </script>-->
 </h:body>
 </html>
