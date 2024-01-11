@@ -1,3 +1,4 @@
+DELETE FROM results;
 CREATE TABLE results
 (
     id SERIAL PRIMARY KEY,
