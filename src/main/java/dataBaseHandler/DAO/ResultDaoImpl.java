@@ -9,7 +9,6 @@ import org.hibernate.query.Query;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import java.util.ArrayList;
 import java.util.List;
 @ManagedBean
 @RequestScoped
@@ -52,7 +51,7 @@ public class ResultDaoImpl implements resultDao {
 
             tx.commit();
         } catch (Exception e) {
-            System.err.println("Can't delete the file");;
+            System.err.println("Can't delete the file");
         }
     }
     @Override
