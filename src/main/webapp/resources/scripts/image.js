@@ -51,7 +51,6 @@ let sections = [
 ];
 
 function redrawGraph() {
-    alert("Вызвана отрисовка");
     ctx.clearRect(0, 0, w, h);
     ctx.lineWidth = 2;
     ctx.strokeStyle = 'black';
