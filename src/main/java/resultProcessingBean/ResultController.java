@@ -23,7 +23,7 @@ import java.util.List;
 public class ResultController implements Serializable {
     @Getter
     @Setter
-    private List<ResultEntity> results;
+    private volatile List<ResultEntity> results;
     private final AreaProcessing areaProcessing = new AreaProcessing();
     private final resultServiceImpl resultService = new resultServiceImpl();
 
@@ -46,7 +46,8 @@ public class ResultController implements Serializable {
         }
     }
     public void cleanResults(){
-        results.clear();
+        if(results != null)
+            results.clear();
         resultService.cleanResults();
     }
 }
