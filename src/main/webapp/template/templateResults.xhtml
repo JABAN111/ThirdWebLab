@@ -8,8 +8,9 @@
 <h:body>
     <div>
       <h3>Результаты: </h3><br/>
-        <table>
+        <table id="resultsTable">
             <thead>
+
             <tr><td>Координата x</td>
                 <td>Координата y</td>
                 <td>Координата R</td>
@@ -18,23 +19,15 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>
-                    #{xButton.data}
-                </td>
-                <td>
-                    #{yButton.data}
-                </td>
-                <td>
-                    #{rButton.value1}
-                </td>
-                <td>
-                    not available
-                </td>
-                <td>
-                    not available
-                </td>
-            </tr>
+            <ui:repeat value="#{Controller.results}" var="result">
+                <tr>
+                    <td>#{result.x}</td>
+                    <td>#{result.y}</td>
+                    <td>#{result.r}</td>
+                    <td>#{result.status ? 'Hit' : 'Miss'}</td>
+                    <td>#{result.date}</td>
+                </tr>
+            </ui:repeat>
             </tbody>
         </table>
     </div>

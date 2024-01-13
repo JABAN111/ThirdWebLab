@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
     <h:outputStylesheet name="style.css" library="style" />
     <title>Основная страница</title>
@@ -28,19 +29,45 @@
                     <ui:include src="/template/buttonsTemplates/templateMainPartYButtons.xhtml"> </ui:include>
                     <ui:include src="/template/buttonsTemplates/templateMainPartRbuttons.xhtml"> </ui:include>
 
-                    <h:commandButton value="Sent">
+
+
+                    <h:commandButton value="Send">
                         <f:ajax execute="@form"
-                                listener="#{Controller.addResult(xButton.data,yButton.data,3)}"
+                                listener="#{Controller.addResult(xButton.data, yButton.data, 3)}"
+                                render="result"
+                                cache="false"
                         />
                     </h:commandButton>
-                    <h:commandButton value="Delete everything"
-                                     action="#{resultServiceImpl.cleanResults()}"
-                    />
+                    <h:commandButton value="Delete everything">
+                        <f:ajax listener="#{Controller.cleanResults()}"
+                        />
+                    </h:commandButton>
 
                 </h:form>
+                <table id="resultsTable">
+                    <thead>
+                    <tr>
+                        <td>Координата x</td>
+                        <td>Координата y</td>
+                        <td>Координата R</td>
+                        <td>Статус попадания</td>
+                        <td>Дата</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <ui:repeat value="#{Controller.results}" var="result">
+                        <tr>
+                            <td>#{result.x}</td>
+                            <td>#{result.y}</td>
+                            <td>#{result.r}</td>
+                            <td>#{result.status ? 'Попал' : 'Промах'}</td>
+                            <td>#{result.date}</td>
+                        </tr>
+                    </ui:repeat>
+                    </tbody>
+                </table>
                 <canvas id="myCanvas" width="350" height="350"> </canvas>
-                <ui:include src="/template/templateResults.xhtml"> </ui:include>
-
+<!--                <ui:include src="/template/templateResults.xhtml"> </ui:include>-->
 
             </ui:insert>
         </div>
@@ -48,6 +75,7 @@
 <!--    <script type="module" src="/webapp/resources/scripts/image.js"> </script>-->
     <h:outputScript name="scripts/image.js" />
 
+<!--    <h:outputScript name="scripts/script.js"/>-->
     <!--        <script src="js/script.js"> </script>-->
 </h:body>
 </html>
