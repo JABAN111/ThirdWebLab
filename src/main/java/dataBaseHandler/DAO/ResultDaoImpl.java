@@ -21,16 +21,8 @@ public class ResultDaoImpl implements resultDao {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
 
-            // Используем HQL для выборки всех записей из таблицы
             Query<ResultEntity> query = session.createQuery("FROM ResultEntity", ResultEntity.class);
             List<ResultEntity> results = query.list();
-
-
-
-            System.out.println("All Results:");
-            for (ResultEntity result : results) {
-                System.out.println(result);
-            }
 
             tx.commit();
             return results;
@@ -40,11 +32,12 @@ public class ResultDaoImpl implements resultDao {
         return null;
     }
 
+
     @Override
     public void save(ResultEntity result) {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
-            session.save(result);
+            session.persist(result);
             tx.commit();
         } catch (Exception e) {
             System.err.println("can't save this result");
@@ -55,7 +48,7 @@ public class ResultDaoImpl implements resultDao {
     public void delete(ResultEntity result) {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
-            session.delete(result);
+            session.remove(result);
 
             tx.commit();
         } catch (Exception e) {
@@ -73,7 +66,7 @@ public class ResultDaoImpl implements resultDao {
 
             tx.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("Не удалось очистить всю таблицу");
         }
     }
 }
