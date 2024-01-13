@@ -13,8 +13,8 @@ public class AreaProcessing implements CartesianAreas {
     @Override
     public boolean secondRotation(Integer x, Double y, Float R) {
         if(x<=0 && y>=0){
-            double line = (float) x + 0.5;
-            return line>=R && x<=-R/2 && y<=R/2;
+            double line = (float) x + 0.5 + R;
+            return line>=y && x>=-R/2 && y<=R/2;
         }
         return false;
     }
@@ -23,7 +23,7 @@ public class AreaProcessing implements CartesianAreas {
     public boolean thirdRotation(Integer x, Double y, Float R) {
         if(x <= 0 && y <= 0){
             double circle = x*x+y*y;
-            return circle <= Math.sqrt(R) && x<=-R && y<=-R;
+            return circle <= R && x>=-R && y>=-R;
         }
         return false;
     }
