@@ -1,7 +1,6 @@
 package resultProcessingBean;
 
 import dataBaseHandler.ResultEntity;
-import dataBaseHandler.service.resultService;
 import dataBaseHandler.service.resultServiceImpl;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +8,6 @@ import lombok.Setter;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,7 +22,7 @@ public class ResultController implements Serializable {
     @Getter
     @Setter
     private List<ResultEntity> results;
-    private resultServiceImpl resultService = new resultServiceImpl();
+    private final resultServiceImpl resultService = new resultServiceImpl();
 
     /**
      * Метод для сохранения сущности внутри контроллера
