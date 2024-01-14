@@ -16,7 +16,7 @@
     <div id = "page">
         <div id="head">
             <ui:insert name ="header">
-                <ui:include src="/template/headers/templateHeader.xhtml"></ui:include>
+                <ui:include src="/template/headers/templateHeader.xhtml"/>
             </ui:insert>
         </div>
         <div id = "main-button">
@@ -25,49 +25,57 @@
         <div>
             <ui:insert name = "main_body">
                 <h:form>
-                    <ui:include src="/template/buttonsTemplates/templateMainPartXbuttons.xhtml"> </ui:include>
-                    <ui:include src="/template/buttonsTemplates/templateMainPartYButtons.xhtml"> </ui:include>
-                    <ui:include src="/template/buttonsTemplates/templateMainPartRbuttons.xhtml"> </ui:include>
-
-
+                    <ui:include src="/template/buttonsTemplates/templateMainPartXbuttons.xhtml"/>
+                    <ui:include src="/template/buttonsTemplates/templateMainPartYButtons.xhtml"/>
+                    <ui:include src="/template/buttonsTemplates/templateMainPartRbuttons.xhtml"/>
 
                     <h:commandButton value="Send">
                         <f:ajax execute="@form"
                                 listener="#{Controller.addResult(xButton.data, yButton.data, 3)}"
-                                render="result"
-                                cache="false"
+                                render="results-table"
                         />
                     </h:commandButton>
+
                     <h:commandButton value="Delete everything">
                         <f:ajax listener="#{Controller.cleanResults()}"
+                                render="results-table"
                         />
                     </h:commandButton>
 
                 </h:form>
-                <table id="resultsTable">
-                    <thead>
-                    <tr>
-                        <td>Координата x</td>
-                        <td>Координата y</td>
-                        <td>Координата R</td>
-                        <td>Статус попадания</td>
-                        <td>Дата</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <ui:repeat value="#{Controller.results}" var="result">
-                        <tr>
-                            <td>#{result.x}</td>
-                            <td>#{result.y}</td>
-                            <td>#{result.r}</td>
-                            <td>#{result.status ? 'Попал' : 'Промах'}</td>
-                            <td>#{result.date}</td>
-                        </tr>
-                    </ui:repeat>
-                    </tbody>
-                </table>
+
+
+                <h:dataTable id="results-table" var="result" value="#{Controller.results}">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Значение x"/>
+                        </f:facet>
+                        <h:outputText value="#{result.x}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Значение y"/>
+                        </f:facet>
+                        <h:outputText value="#{result.y}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Значение r"/>
+                        </f:facet>
+                        <h:outputText value="#{result.r}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Статус попадания"/>
+                        </f:facet>
+                            <h:outputText value="#{result.status ? 'галочка' : '❌'}"/>
+                    </h:column>
+                </h:dataTable>
+
                 <canvas id="myCanvas" width="350" height="350"> </canvas>
-<!--                <ui:include src="/template/templateResults.xhtml"> </ui:include>-->
 
             </ui:insert>
         </div>
