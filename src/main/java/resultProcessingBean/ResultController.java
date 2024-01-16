@@ -4,7 +4,6 @@ import coordinateProcessing.AreaProcessing;
 import dataBaseHandler.ResultEntity;
 import dataBaseHandler.service.resultServiceImpl;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import utils.DotTransformer;
 
@@ -31,11 +30,10 @@ public class ResultController implements Serializable {
             results = new ArrayList<>();
         getAllResults();
     }
-    /**
-     * Метод для сохранения сущности внутри контроллера
-     * @param entity будет передаваться при добавлении нового результата
-     */
-    private void saveResult(ResultEntity entity){
+
+    private void saveResultLocal(ResultEntity entity){
+        if(results == null)
+            results = new ArrayList<>();
         results.add(entity);
     }
     private void getAllResults(){
@@ -46,7 +44,7 @@ public class ResultController implements Serializable {
             Date date = new Date();
             boolean isHit = areaProcessing.areaCheck(x,DotTransformer.dotTransform(y),DotTransformer.dotTransform(R));
             ResultEntity result = new ResultEntity(x,DotTransformer.dotTransform(y),DotTransformer.dotTransform(R),date,isHit);
-            saveResult(result);
+            saveResultLocal(result);
             resultService.addResult(result);
         }
     }
