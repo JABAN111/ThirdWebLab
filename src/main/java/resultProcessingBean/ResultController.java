@@ -17,9 +17,8 @@ import java.util.Date;
 import java.util.List;
 
 
-@ManagedBean(name = "Controller")
+@ManagedBean(name = "Controller", eager = true)
 @ApplicationScoped
-@NoArgsConstructor
 public class ResultController implements Serializable {
     @Getter
     @Setter
@@ -27,14 +26,20 @@ public class ResultController implements Serializable {
     private final AreaProcessing areaProcessing = new AreaProcessing();
     private final resultServiceImpl resultService = new resultServiceImpl();
 
+    public ResultController(){
+        if(results == null)
+            results = new ArrayList<>();
+        getAllResults();
+    }
     /**
      * Метод для сохранения сущности внутри контроллера
      * @param entity будет передаваться при добавлении нового результата
      */
     private void saveResult(ResultEntity entity){
-        if(results == null)
-            results = new ArrayList<>();
         results.add(entity);
+    }
+    private void getAllResults(){
+        results = resultService.getAllResults();
     }
     public void addResult(Integer x, Double y, Float R){
         if(x != null && y != null && R != null){
