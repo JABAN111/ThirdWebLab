@@ -19,20 +19,24 @@
             </ui:insert>
         </div>
         <div id = "main-button">
-            <h:commandLink action="../startPage.xhtml" value="To the start page" />
+            <h:link outcome="startPage.xhtml">
+                На стартовую страницу
+            </h:link>
         </div>
         <div>
             <ui:insert name = "main_body">
                 <h:form>
+                    <canvas id="myCanvas" width="350" height="350"> </canvas>
                     <ui:include src="/template/buttonsTemplates/templateMainPartXbuttons.xhtml"/>
                     <ui:include src="/template/buttonsTemplates/templateMainPartYButtons.xhtml"/>
                     <ui:include src="/template/buttonsTemplates/templateMainPartRbuttons.xhtml"/>
 
                     <h:commandButton value="Send">
                         <f:ajax execute="@form"
-                                listener="#{Controller.addResult(xButton.data, yButton.data, 3)}"
-                                render="results-table"
-                        />
+                                listener="#{Controller.addResult(xButton.data, yButton.data,
+                                 RButton.pickedR
+                                )}"
+                                render="results-table "/>
                     </h:commandButton>
 
                     <h:commandButton value="Delete everything">
@@ -40,6 +44,8 @@
                                 render="results-table"
                         />
                     </h:commandButton>
+
+
 
                 </h:form>
 
@@ -70,11 +76,10 @@
                         <f:facet name="header">
                             <h:outputText value="Статус попадания"/>
                         </f:facet>
-                            <h:outputText value="#{result.status ? 'галочка' : '❌'}"/>
+                            <h:outputText value="#{result.status ? '✅' : '❌'}"/>
                     </h:column>
                 </h:dataTable>
 
-                <canvas id="myCanvas" width="350" height="350"> </canvas>
 
             </ui:insert>
         </div>
