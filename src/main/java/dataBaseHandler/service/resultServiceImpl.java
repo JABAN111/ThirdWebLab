@@ -7,6 +7,7 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import java.io.Serializable;
+import java.util.List;
 
 @ManagedBean()
 @ApplicationScoped
@@ -26,8 +27,8 @@ public class resultServiceImpl implements resultService, Serializable {
 
 
     @Override
-    public void getAllResults() {
-        resultDao.showAll();
+    public List<ResultEntity> getAllResults() {
+        return resultDao.showAll();
     }
 
     @Override
