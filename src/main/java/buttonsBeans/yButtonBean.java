@@ -1,15 +1,20 @@
 package buttonsBeans;
 
-import lombok.Data;
+
+import lombok.Getter;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import java.io.Serializable;
 
-@Data
+import static utils.DotTransformer.*;
+
+@Getter
 @RequestScoped
 @ManagedBean(name = "yButton", eager = true)
 public class yButtonBean implements Serializable {
-    private Double data;
-
+    private String data;
+    public void setData (String data){
+        this.data = dotTransform(data) + "";
+    }
 }
