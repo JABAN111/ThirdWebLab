@@ -3,34 +3,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
-<h:head>
-    <h:outputScript library="primefaces" name="jquery/jquery.js" />
-</h:head>
 <h:body>
     <h3>Выберите R:</h3>
     <div id="rValuesContainer">
-<!--        <ui:repeat value="#{RButton.availableValues}" var="rValue">-->
-<!--            <p:selectBooleanCheckbox onchange="setRadiusByCheckBox(this, #{rValue.label})" id="RValue#{rValue.label}" class="R" value="#{rValue.value}" itemLabel="#{rValue.label}">-->
-<!--                <p:ajax update="@(.R)" listener="#{RButton.resultProcessing(rValue.label)}" />-->
-<!--            </p:selectBooleanCheckbox>-->
-<!--        </ui:repeat>-->
-            <p:selectBooleanCheckbox onchange="setRadiusByCheckBox(this,1)" id="RValue1" class = "R" value="#{RButton.availableValues[0].value}" itemLabel="1">
-                <p:ajax update="RValue1 RValue15 RValue2 RValue25 RValue3" listener="#{RButton.resultProcessing(0)}" />
-            </p:selectBooleanCheckbox>
-            <p:selectBooleanCheckbox onchange="setRadiusByCheckBox(this,1.5)" id="RValue15" class = "R" value="#{RButton.availableValues[1].value}" itemLabel="1.5">
-            <p:ajax update="RValue1 RValue15 RValue2 RValue25 RValue3" listener="#{RButton.resultProcessing(1)}" />
-            </p:selectBooleanCheckbox>
-            <p:selectBooleanCheckbox onchange="setRadiusByCheckBox(this,2)" id="RValue2" class = "R" value="#{RButton.availableValues[2].value}" itemLabel="2">
-                <p:ajax update="RValue1 RValue15 RValue2 RValue25 RValue3" listener="#{RButton.resultProcessing(2)}" />
+        <p:selectBooleanCheckbox onchange="setRadiusByCheckBox(this,1)" id="RValue1" class = "R" value="#{RButton.availableValues[0].value}" itemLabel="1">
+                            <p:ajax update="RValue1 RValue15 RValue2 RValue25 RValue3" listener="#{RButton.pickButtonProcessing(0)}" />
+        </p:selectBooleanCheckbox>
+        <p:selectBooleanCheckbox onchange="setRadiusByCheckBox(this,1.5)" id="RValue15" class = "R" value="#{RButton.availableValues[1].value}" itemLabel="1.5">
+                        <p:ajax update="RValue1 RValue15 RValue2 RValue25 RValue3" listener="#{RButton.pickButtonProcessing(1)}" />
+        </p:selectBooleanCheckbox>
+        <p:selectBooleanCheckbox onchange="setRadiusByCheckBox(this,2)" id="RValue2" class = "R" value="#{RButton.availableValues[2].value}" itemLabel="2">
+                            <p:ajax update="RValue1 RValue15 RValue2 RValue25 RValue3" listener="#{RButton.pickButtonProcessing(2)}" />
+        </p:selectBooleanCheckbox>
+        <p:selectBooleanCheckbox onchange="setRadiusByCheckBox(this,2.5)" id="RValue25" class = "R" value="#{RButton.availableValues[3].value}" itemLabel="2.5">
+                            <p:ajax update="RValue1 RValue15 RValue2 RValue25 RValue3" listener="#{RButton.pickButtonProcessing(3)}" />
 
-            </p:selectBooleanCheckbox>
-            <p:selectBooleanCheckbox onchange="setRadiusByCheckBox(this,2.5)" id="RValue25" class = "R" value="#{RButton.availableValues[3].value}" itemLabel="2.5">
-                <p:ajax update="RValue1 RValue15 RValue2 RValue25 RValue3" listener="#{RButton.resultProcessing(3)}" />
-
-            </p:selectBooleanCheckbox>
-            <p:selectBooleanCheckbox onchange="setRadiusByCheckBox(this,3)" id="RValue3" class = "R" value="#{RButton.availableValues[4].value}" itemLabel="3">
-                <p:ajax update="RValue1 RValue15 RValue2 RValue25 RValue3" listener="#{RButton.resultProcessing(4 )}" />
-            </p:selectBooleanCheckbox>
+        </p:selectBooleanCheckbox>
+        <p:selectBooleanCheckbox onchange="setRadiusByCheckBox(this,3)" id="RValue3" class = "R" value="#{RButton.availableValues[4].value}" itemLabel="3">
+                            <p:ajax update="RValue1 RValue15 RValue2 RValue25 RValue3" listener="#{RButton.pickButtonProcessing(4)}" />
+        </p:selectBooleanCheckbox>
     </div>
 </h:body>
 </html>
