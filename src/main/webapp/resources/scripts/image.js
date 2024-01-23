@@ -144,7 +144,6 @@ function printDotOnGraph(xCenter, yCenter, isHit) {
         ctx.fillStyle = '#eaca07'
     let x = w / 2 + xCenter * hatchGap * (2 / currentRadius);
     let y = h / 2 - yCenter * hatchGap * (2 / currentRadius);
-    oldDots.push([xCenter, yCenter, isHit]);
 
     ctx.beginPath();
     ctx.arc(x, y, 3, 0, 2 * Math.PI);
