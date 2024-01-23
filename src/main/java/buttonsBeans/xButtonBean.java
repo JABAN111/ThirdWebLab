@@ -12,6 +12,6 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 @Data
 public class xButtonBean implements Serializable {
-    private int data;
+    private Double data;
     private Float clickData;
 }
