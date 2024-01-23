@@ -8,8 +8,9 @@ import java.io.Serializable;
 public class RValue implements Serializable {
     private Float label;
     private boolean value;
+
     public RValue(Float label,boolean value) {
-        this.value = value;
         this.label = label;
+        this.value = value;
     }
 }
