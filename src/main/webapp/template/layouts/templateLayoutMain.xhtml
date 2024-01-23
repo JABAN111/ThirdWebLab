@@ -4,10 +4,9 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-    <h:outputStylesheet name="style.css" library="style" />
     <title>Основная страница</title>
+    <h:outputStylesheet name="style.css" library="style" />
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
     <meta name="description" content="Web-programming third lab"/>
     <meta name="author" content="Niagin Mikhail Alexeyevich"/>
 </h:head>
@@ -18,76 +17,72 @@
                 <ui:include src="/template/headers/templateHeader.xhtml"/>
             </ui:insert>
         </div>
+
         <div id = "main-button">
             <h:link outcome="startPage.xhtml">
                 На стартовую страницу
             </h:link>
         </div>
-        <div>
+
             <ui:insert name = "main_body">
-                <h:form>
+                <h:form id="main-form">
                     <canvas id="myCanvas" width="350" height="350"> </canvas>
                     <ui:include src="/template/buttonsTemplates/templateMainPartXbuttons.xhtml"/>
                     <ui:include src="/template/buttonsTemplates/templateMainPartYButtons.xhtml"/>
                     <ui:include src="/template/buttonsTemplates/templateMainPartRbuttons.xhtml"/>
-
-                    <h:commandButton value="Send">
+                    <h:commandButton id = "submitButton" value="Send">
                         <f:ajax execute="@form"
-                                listener="#{Controller.addResult(xButton.data, yButton.data,
-                                 RButton.pickedR
-                                )}"
-                                render="results-table "/>
+                                listener="#{Controller.addResult(xButton.data, yButton.data,RButton.pickedR)}"
+                                render="results-table"/>
                     </h:commandButton>
-
-                    <h:commandButton value="Delete everything">
-                        <f:ajax listener="#{Controller.cleanResults()}"
-                                render="results-table"
-                        />
-                    </h:commandButton>
-
-
-
                 </h:form>
 
+                <h:commandButton id = "deleteButton" value="Delete everything">
+                    <f:ajax listener="#{Controller.cleanResults()}"
+                            render="results-table hitStatus"
+                    />
+                </h:commandButton>
+
+                <h:form id="clicking-form">
+                    <h:inputText style="display: none" id="xHidden" value="#{xButton.clickData}"/>
+                    <h:inputText style="display: none" id="clickingYHidden" value="#{yButton.clickData}"/>
+                    <h:commandButton id="click-submit" value="autoClick" style="display: none">
+                        <f:ajax execute="@form"
+                                listener="#{Controller.addResult(xButton.clickData, yButton.clickData, RButton.pickedR)}"
+                                render="rHidden xHidden clickingYHidden results-table"
+                        />
+                    </h:commandButton>
+                </h:form>
 
                 <h:dataTable id="results-table" var="result" value="#{Controller.results}">
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Значение x"/>
                         </f:facet>
-                        <h:outputText value="#{result.x}"/>
+                        <h:outputText id="xResult" value="#{result.x}"/>
                     </h:column>
-
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Значение y"/>
                         </f:facet>
-                        <h:outputText value="#{result.y}"/>
+                        <h:outputText id="yResult" value="#{result.y}"/>
                     </h:column>
-
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Значение r"/>
                         </f:facet>
-                        <h:outputText value="#{result.r}"/>
+                        <h:outputText id = "rResult" value="#{result.r}"/>
                     </h:column>
-
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Статус попадания"/>
                         </f:facet>
-                            <h:outputText value="#{result.status ? '✅' : '❌'}"/>
+                            <h:outputText id="hitResult" value="#{result.status ? '✅' : '❌'}"/>
                     </h:column>
                 </h:dataTable>
-
-
             </ui:insert>
         </div>
-    </div>
-<!--    <script type="module" src="/webapp/resources/scripts/image.js"> </script>-->
     <h:outputScript name="scripts/image.js" />
-
-<!--    <h:outputScript name="scripts/script.js"/>-->
-    <!--        <script src="js/script.js"> </script>-->
+    <h:outputScript name="scripts/script.js"/>
 </h:body>
 </html>
