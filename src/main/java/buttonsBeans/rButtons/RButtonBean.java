@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-@ManagedBean(name="RButton")
+@ManagedBean(name="RButton", eager = true)
 @SessionScoped
 public class RButtonBean implements Serializable {
 
@@ -31,8 +31,24 @@ public class RButtonBean implements Serializable {
         }
         return cnt;
     }
+
+    /**
+     * Вспомагательная функция для того, чтобы пользователь мог выбрать только один параметр R
+     * @param num - номер кнопки в массиве availableValues
+     */
+    public void pickButtonProcessing(int num){
+        if(num >= 0 && num < 5){
+            for (int i = 0; i < availableValues.size(); i++) {
+                //скипаем наш элемент
+                if(i == num) {
+                    continue;
+                }
+                availableValues.get(i).setValue(false);
+            }
+        }
+    }
+
     public Float getPickedR(){
-        //придумать бы ошибочный вывод для ошибки:D
         if(getCountCheckedButtons() != 1 || getCountCheckedButtons() == 0){
             return null;
         }
