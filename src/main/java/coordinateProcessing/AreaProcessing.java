@@ -3,7 +3,7 @@ package coordinateProcessing;
 public class AreaProcessing implements CartesianAreas {
 
     @Override
-    public boolean firstRotation(Integer x, Double y, Float R) {
+    public boolean firstRotation(Double x, Double y, Float R) {
         if(x >= 0 && y >= 0){
             return x <= R / 2 && y <= R;
         }
@@ -11,30 +11,30 @@ public class AreaProcessing implements CartesianAreas {
     }
 
     @Override
-    public boolean secondRotation(Integer x, Double y, Float R) {
+    public boolean secondRotation(Double x, Double y, Float R) {
         if(x<=0 && y>=0){
-            double line = (float) x + 0.5 + R;
+            double line = x + 0.5 + R;
             return line>=y && x>=-R/2 && y<=R/2;
         }
         return false;
     }
 
     @Override
-    public boolean thirdRotation(Integer x, Double y, Float R) {
+    public boolean thirdRotation(Double x, Double y, Float R) {
         if(x <= 0 && y <= 0){
             double circle = x*x+y*y;
-            return circle <= R && x>=-R && y>=-R;
+            return circle <= R*R && x>=-R && y>=-R;
         }
         return false;
     }
 
     @Override
-    public boolean fourthRotation(Integer x, Double y, Float R) {
+    public boolean fourthRotation(Double x, Double y, Float R) {
         return false;
     }
 
     @Override
-    public boolean areaCheck(Integer x, Double y, Float R) {
+    public boolean areaCheck(Double x, Double y, Float R) {
         return firstRotation(x,y,R) || secondRotation(x,y,R) || thirdRotation(x,y,R) || fourthRotation(x,y,R);
     }
 }
