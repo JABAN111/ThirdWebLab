@@ -1,24 +1,20 @@
-const canvas = document.getElementById("myCanvas"),
-    ctx = canvas.getContext('2d');
-
-let w = canvas.width,
-    h = canvas.height;
-
+const canvas = document.getElementById("myCanvas"), ctx = canvas.getContext('2d');
+let w = canvas.width, h = canvas.height;
 const hatchWidth = 20 / 2;
 const hatchGap = 56;
-
-let currentRadius = null;
+let currentRadius;
 
 let sections = [
     {
-        name: "first_quarter",
+        name: 'first_quarter',
         draw: () => {
             ctx.beginPath();
             ctx.fillStyle = "#0B04D5";
-            ctx.moveTo(w / 2, h / 2 - hatchGap * 2);
-            ctx.lineTo(w / 2 + hatchGap * 2, h / 2);
+            ctx.moveTo(w/2,h/2 - hatchGap * 2);
+            ctx.lineTo(w/2+hatchGap,h/2-hatchGap*2);
+            ctx.lineTo(w/2+hatchGap,h/2);
             ctx.lineTo(w/2,h/2);
-            ctx.lineTo(w/2,h/2-hatchGap*2);
+
             ctx.fill();
             ctx.stroke();
         }
@@ -28,28 +24,29 @@ let sections = [
         draw: () => {
             ctx.beginPath();
             ctx.fillStyle = "#0B04D5";
-            ctx.moveTo(w / 2, h / 2);
-            ctx.fillRect(w / 2, h / 2, -hatchGap * 2, -hatchGap * 2);
-            // ctx.stroke(); // Убрал эту строку
-            ctx.closePath();
+
+            ctx.moveTo(w/2,h/2-hatchGap);
+            ctx.lineTo(w/2-hatchGap,h/2);
+            ctx.lineTo(w/2,h/2);
+
+            ctx.fill();
+            ctx.stroke();
         }
     },
     {
-        name: "fourth_quarter",
+        name: "third_quarter",
         draw: () => {
-            ctx.beginPath();
-            ctx.fillStyle = "#0B04D5";
-            ctx.moveTo(w/2+hatchGap,h/2);
-            ctx.lineTo(w/2,h/2+hatchGap);
-            ctx.lineTo(w/2,h/2);
-            ctx.lineTo(w/2,h/2-hatchGap*2);
-            ctx.arc(w / 2, h / 2, hatchGap, 0, Math.PI / 2);
+            ctx.beginPath()
+            ctx.fillStyle = "#0B04D5"
+
+            ctx.moveTo(w/2,h/2);
+            ctx.arc(w/2,h/2,hatchGap*2,Math.PI,Math.PI/2,true);
+
             ctx.fill();
-            ctx.closePath();
+            ctx.stroke();
         }
     }
 ];
-
 function redrawGraph() {
     ctx.clearRect(0, 0, w, h);
     ctx.lineWidth = 2;
@@ -58,6 +55,12 @@ function redrawGraph() {
         section.draw();
     }
     drawAxesAndHatch();
+    numCoord();
+}
+function setRadiusByCheckBox(checkbox,newRadius) {
+    currentRadius = newRadius;
+    redrawGraph();
+    drawAllPointsFromResultTable();
 }
 function setRadius(newRadius) {
     currentRadius = newRadius;
@@ -106,18 +109,8 @@ function drawAxesAndHatch() {
     ctx.lineTo(w / 2 + hatchGap * 2, h / 2 + hatchWidth);
     ctx.stroke();
     ctx.closePath();
-    numCoord();
-    updateOldDots();
 }
-function updateOldDots(){
-    for(let i = 0; i<oldDots.length;i++){
-        let currentDot = oldDots[i];
-        let x = currentDot[0];
-        let y = currentDot[1];
-        let isHit = currentDot[2];
-        printDotOnGraph(x,y,isHit);
-    }
-}
+
 /*Ставит числа рядом со штрихами в соответствии с выбранным R*/
 function numCoord(){
     if(currentRadius === null)
@@ -141,8 +134,14 @@ function numCoord(){
     ctx.fillText(`${currentRadius/2}`, w/2+indent,h/2+hatchGap);
     ctx.fillText(`${currentRadius}`, w/2+indent,h/2+hatchGap*2);
 }
+
 function printDotOnGraph(xCenter, yCenter, isHit) {
-    ctx.fillStyle = isHit ? '#1AFF00' : '#ff0000'
+    console.log('Полученны результаты: ',xCenter, yCenter, isHit);
+    console.log('status of hit: ' + isHit);
+    if(isHit !== null)
+        ctx.fillStyle = isHit ? '#1AFF00' : '#ff0000'
+    else
+        ctx.fillStyle = '#eaca07'
     let x = w / 2 + xCenter * hatchGap * (2 / currentRadius);
     let y = h / 2 - yCenter * hatchGap * (2 / currentRadius);
     oldDots.push([xCenter, yCenter, isHit]);
@@ -154,7 +153,6 @@ function printDotOnGraph(xCenter, yCenter, isHit) {
     ctx.closePath();
     // redrawGraph();
 }
-let oldDots = []
 redrawGraph();
 
 const mouse = {
