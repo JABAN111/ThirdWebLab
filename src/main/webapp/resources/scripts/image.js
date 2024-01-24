@@ -136,8 +136,6 @@ function numCoord(){
 }
 
 function printDotOnGraph(xCenter, yCenter, isHit) {
-    console.log('Полученны результаты: ',xCenter, yCenter, isHit);
-    console.log('status of hit: ' + isHit);
     if(isHit !== null)
         ctx.fillStyle = isHit ? '#1AFF00' : '#ff0000'
     else

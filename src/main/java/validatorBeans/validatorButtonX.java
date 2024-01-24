@@ -16,7 +16,11 @@ public class validatorButtonX implements Validator {
 
     @Override
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object value) throws ValidatorException {
-        Double xNum = (Double) value;
+        if(value == null){
+            FacesMessage message = new FacesMessage("Выберите x");
+            throw new ValidatorException(message);
+        }
+        double xNum = (double) value;
         if(!(xNum >= -4.0 && xNum <= 4.0)){
             FacesMessage message = new FacesMessage("Не валидный x, значение x должно быть в диапозоне [-4;4]");
             throw new ValidatorException(message);

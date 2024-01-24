@@ -2,11 +2,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Основная страница</title>
     <h:outputStylesheet name="style.css" library="style" />
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="description" content="Web-programming third lab"/>
     <meta name="author" content="Niagin Mikhail Alexeyevich"/>
 </h:head>
@@ -19,7 +19,7 @@
         </div>
 
         <div id = "main-button">
-            <h:link outcome="startPage.xhtml">
+            <h:link styleClass="toStart" outcome="startPage.xhtml">
                 На стартовую страницу
             </h:link>
         </div>
@@ -30,14 +30,14 @@
                     <ui:include src="/template/buttonsTemplates/templateMainPartXbuttons.xhtml"/>
                     <ui:include src="/template/buttonsTemplates/templateMainPartYButtons.xhtml"/>
                     <ui:include src="/template/buttonsTemplates/templateMainPartRbuttons.xhtml"/>
-                    <h:commandButton id = "submitButton" value="Send">
+                    <h:commandButton id = "submitButton" styleClass="submit-button" value="Отправить">
                         <f:ajax execute="@form"
                                 listener="#{Controller.addResult(xButton.data, yButton.data,RButton.pickedR)}"
                                 render="results-table"/>
                     </h:commandButton>
                 </h:form>
 
-                <h:commandButton id = "deleteButton" value="Delete everything">
+                <h:commandButton id = "deleteButton" styleClass="delete-button" value="Стереть все">
                     <f:ajax listener="#{Controller.cleanResults()}"
                             render="results-table hitStatus"
                     />
@@ -46,15 +46,14 @@
                 <h:form id="clicking-form">
                     <h:inputText style="display: none" id="xHidden" value="#{xButton.clickData}"/>
                     <h:inputText style="display: none" id="clickingYHidden" value="#{yButton.clickData}"/>
-                    <h:commandButton id="click-submit" value="autoClick" style="display: none">
+                    <p:commandButton id="click-submit" value="autoClick" style="display: none">
                         <f:ajax execute="@form"
                                 listener="#{Controller.addResult(xButton.clickData, yButton.clickData, RButton.pickedR)}"
-                                render="rHidden xHidden clickingYHidden results-table"
+                                render="results-table rHidden xHidden clickingYHidden"
                         />
-                    </h:commandButton>
+                    </p:commandButton>
                 </h:form>
-
-                <h:dataTable id="results-table" var="result" value="#{Controller.results}">
+                <h:dataTable id="results-table" border="1" var="result" value="#{Controller.results}">
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Значение x"/>
@@ -65,7 +64,7 @@
                         <f:facet name="header">
                             <h:outputText value="Значение y"/>
                         </f:facet>
-                        <h:outputText id="yResult" value="#{result.y}"/>
+                        <h:outputText  id="yResult" value="#{result.y}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
@@ -77,11 +76,11 @@
                         <f:facet name="header">
                             <h:outputText value="Статус попадания"/>
                         </f:facet>
-                            <h:outputText id="hitResult" value="#{result.status ? '✅' : '❌'}"/>
+                        <h:outputText id="HitResult" value="#{result.status ? '✅' : '❌'}"/>
                     </h:column>
                 </h:dataTable>
             </ui:insert>
-        </div>
+    </div>
     <h:outputScript name="scripts/image.js" />
     <h:outputScript name="scripts/script.js"/>
 </h:body>

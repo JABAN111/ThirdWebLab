@@ -36,7 +36,7 @@ public class RButtonBean implements Serializable {
      * Вспомагательная функция для того, чтобы пользователь мог выбрать только один параметр R
      * @param num - номер кнопки в массиве availableValues
      */
-    public void pickButtonProcessing(int num){
+public void pickButtonProcessing(int num){
         if(num >= 0 && num < 5){
             for (int i = 0; i < availableValues.size(); i++) {
                 //скипаем наш элемент

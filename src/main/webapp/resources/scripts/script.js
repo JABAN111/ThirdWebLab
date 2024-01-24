@@ -41,7 +41,7 @@ function drawAllPointsFromResultTable(){
         if(x==null)
             break;
         let y = document.getElementById('results-table:'+ i + ':yResult');
-        let result = document.getElementById('results-table:' + i + ':hitResult');
+        let result = document.getElementById('results-table:' + i + ':HitResult');
         let isHit = result.innerHTML === '✅';
         printDotOnGraph(x.innerHTML,y.innerHTML,isHit);
         i++;
