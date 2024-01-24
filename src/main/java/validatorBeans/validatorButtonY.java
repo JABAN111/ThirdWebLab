@@ -1,5 +1,7 @@
 package validatorBeans;
 
+import utils.DotTransformer;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -16,7 +18,7 @@ public class validatorButtonY implements Validator {
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         try {
-        double yNum = Double.parseDouble(String.valueOf(value));
+        double yNum = DotTransformer.dotTransform(value.toString());
             if (!(yNum >= -3 && yNum <= 5)) {
                 FacesMessage message = new FacesMessage("y должен быть в диапазоне [-3;5]\n" +
                         "Введенное значение: " + value);
