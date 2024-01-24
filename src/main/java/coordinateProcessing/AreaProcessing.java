@@ -13,7 +13,7 @@ public class AreaProcessing implements CartesianAreas {
     @Override
     public boolean secondRotation(Double x, Double y, Float R) {
         if(x<=0 && y>=0){
-            double line = x + 0.5 + R;
+            double line = x + R/2;
             return line>=y && x>=-R/2 && y<=R/2;
         }
         return false;
